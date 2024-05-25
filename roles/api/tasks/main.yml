@@ -1,0 +1,9 @@
+- name: Stop and remove existing api container if it exists
+  shell: |
+    if [ "$(docker ps -aq -f name=api)" ]; then
+      docker rm -f api
+    fi
+  ignore_errors: true
+  
+- name: Run api container
+  shell: docker run -d --name api -p "{{ api_port }}:{{ api_port }}" -e NODE_ENV="{{ note_env }}" -e MONGO_URL=mongodb://"{{ mongodb_username }}":"{{ mongodb_password }}"@localhost:"{{ mongodb_port }}/{{ mongodb_dbname }}" hieubeo2369/api

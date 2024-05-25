@@ -1,0 +1,24 @@
+- name: Stop and remove existing db container if it exists
+  shell: |
+    if [ "$(docker ps -aq -f name=db)" ]; then
+      docker rm -f db
+    fi
+  ignore_errors: true
+
+- name: Copy init data to remote host
+  copy:
+    src: "files/"
+    dest: "/tmp/db/"
+    owner: "{{ ansible_owner }}"
+    group: "{{ ansible_group }}"
+    mode: "0755"
+    remote_src: false
+
+
+- name: Build custom MongoDB image
+  shell: docker build -t "{{ mongo_img }}" .
+  args:
+   chdir: /tmp/db
+
+- name: Run db container from custom image
+  shell: docker run -d --name db -p "{{ db_port }}:{{ db_port }}" -v /data/db:/data/db "{{ mongo_img }}"

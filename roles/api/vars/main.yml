@@ -1,0 +1,8 @@
+---
+# vars file for roles/api
+api_port: 5001
+note_env: protection
+mongodb_username: hieu
+mongodb_password: 123
+mongodb_port: 27017
+mongodb_dbname: vtsStudents

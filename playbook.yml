@@ -1,0 +1,10 @@
+- name: Setup VDT-2024 Midterm web app
+  hosts: all
+  become: true
+  gather_facts: true
+
+  roles:
+    - setup
+    - api
+    - web
+    - db

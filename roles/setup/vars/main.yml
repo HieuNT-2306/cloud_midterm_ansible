@@ -1,0 +1,3 @@
+---
+# vars file for setup
+ansible_user: hieu

@@ -1,0 +1,4 @@
+---
+# vars file for roles/web
+web_image: hieubeo2369/web
+web_port: 3000

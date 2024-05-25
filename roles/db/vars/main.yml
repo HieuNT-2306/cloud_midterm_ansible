@@ -1,0 +1,6 @@
+---
+# vars file for roles/db
+ansible_owner: hieu
+ansible_group: hieu
+db_port: 27017
+mongo_img: custom_mongo:latest

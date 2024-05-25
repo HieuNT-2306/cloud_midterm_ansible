@@ -1,0 +1,9 @@
+- name: Stop and remove existing web container if it exists
+  shell: |
+    if [ "$(docker ps -aq -f name=web)" ]; then
+      docker rm -f web
+    fi
+  ignore_errors: true
+
+- name: Run web container
+  shell: docker run -d --name web -p "{{ web_port }}:{{ web_port }}" "{{ web_image }}"
